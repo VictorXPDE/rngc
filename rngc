@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+
+# Escrito por: VictorXPDE
+# Data: 16 de Janeiro de 2022
+# Data de atualização: 16 de Fevereiro de 2022
+
+# Esse é um programa com uma coleção de geradores de número aleatórios
+# antes eu tinha algo parecido só que era tudo um monte de shell script
+# separado, desse jeito ta bem melhor.
+
+import random
+import os
+
+while True:
+    os.system('clear')
+    # Logo feita com figlet e o pacote figlet-fonts do aur
+    print(":::::::.. :::.    :::.  .,-:::::/    .,-:::::")
+    print(";;;;``;;;;`;;;;,  `;;;,;;-'````'   ,;;;'````'")
+    print(" [[[,/[[['  [[[[[. '[[[[[   [[[[[[/[[[")
+    print("$$$$$$c    $$$ \"Y$c$$\"$$c.    \"$$ $$$")
+    print(" 888b \"88bo,888    Y88 `Y8bo,,,o88o`88bo,__,o,")
+    print(" MMMM   \"W\" MMM     YM   `'YMUP\"YMM  \"YUMMMMMP\"\n")
+    print("       Random Number Generator Collection")
+    print("=================================================\n")
+
+    print("0 - Sair\n1 - Número\n2 - Cores Hexadecimais\n3 - Caractere Unicode\n4 - Código Binário\n")
+    escolha = input("Escolha qual gerador você quer usar: ")
+
+    def menu():
+        match escolha:
+            case "0":
+                exit()
+            case "1":
+                print('Digite "sair" para sair\n')
+                while True:
+                    min = input("Insira um valor mínimo: ")
+
+                    if min == "sair":
+                        break
+                    else:
+                        max = input("Insira um valor máximo: ")
+                    if max == "sair":
+                        break
+                    else:
+                        quantidade = input("Quantos números gerar?: ")
+
+                    if quantidade == "sair":
+                        break
+                    else:
+                        for i in range(1, int(quantidade)+1):
+                            print(random.randint(int(min), int(max)))
+
+            case "2":
+                print('Digite "sair" para sair\n')
+                while True:
+                    quantidade = input("Quantas cores gerar?: ")
+                    if quantidade == "sair":
+                        break
+                    else:
+                        for i in range(1, int(quantidade)+1):
+                            r = lambda: random.randint(0,255)
+                            print('#%02X%02X%02X' % (r(),r(),r()))
+            case "3":
+                print('Digite "sair" para sair\n')
+                while True:
+                    quantidade = input("Quantos caracteres gerar?: ")
+                    if quantidade == "sair":
+                        break
+                    else:
+                        for i in range(1, int(quantidade)+1):
+                            # Tive que colocar 50000 como o máximo porque se eu colocasse
+                            # o valor máximo unicode ia gerar uns caracteres tofu e não ia
+                            # dar para ver.
+                            rand = random.randint(0,50000)
+                            unicode = chr(rand)
+                            print(unicode)
+
+            case "4":
+                print('Digite "sair" para sair\n')
+                while True:
+                    tamanho = input("Quantos bits gerar?: ")
+                    if tamanho == "sair":
+                        break
+                    else:
+                        byte = input("Quantos bytes gerar?: ")
+                    if byte == "sair":
+                        break
+                    else:
+                        # Colocando 2 for loops para poder gerar espaços entre os bytes.
+                        for j in range(int(byte)):
+                            for i in range(int(tamanho)):
+                                numero =  random.randint(0,1)
+                                print(numero, end="")
+                            print(" ", end="")
+                        print("\n",end="")
+
+    menu()
